@@ -11,6 +11,7 @@ public class RubyController : MonoBehaviour
     int curHealth;
     bool isInvincible;
     float invincibleTimer;
+    Vector2 lookDirection;
     public int health { get { return curHealth; }}
     // private int dir;
     // Start is called before the first frame update
@@ -28,6 +29,8 @@ public class RubyController : MonoBehaviour
         curHealth = maxHealth;
         isInvincible = false;
         invincibleTimer = 0.0f;
+        lookDirection = new Vector2(-0.1f, 0f);
+        lookDirection.Normalize();
     }
 
     // Update is called once per frame
@@ -37,15 +40,20 @@ public class RubyController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         if (Input.GetKeyUp(KeyCode.Space)) {
-            animator.SetBool("Hit", true);
+            // animator.SetBool("Hit", true);
+            animator.SetTrigger("Launch");
         }
         // Debug.Log(horizontal);
         pos.x += speed * horizontal * Time.deltaTime;
         pos.y += speed * vertical * Time.deltaTime;
         float moveSpeed = Mathf.Sqrt(horizontal * horizontal + vertical * vertical);
         Debug.Log("move speed:" + moveSpeed + "," + horizontal + "," + vertical);
-        animator.SetFloat("Look X", horizontal == 0 ? 0 : (horizontal > 0 ? 1 : -1));
-        animator.SetFloat("Look Y", vertical == 0 ? 0 : (vertical > 0 ? 1 : -1));
+        if (!Mathf.Approximately(0.0f, horizontal) || !Mathf.Approximately(0.0f, vertical)) {
+            lookDirection.Set(horizontal, vertical);
+            lookDirection.Normalize();
+        }
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", moveSpeed);
         // transform.position = pos;
         rigidbody2d.MovePosition(pos);
@@ -67,6 +75,7 @@ public class RubyController : MonoBehaviour
             {
                 return;
             }
+            animator.SetTrigger("Hit");
             isInvincible = true;
             invincibleTimer = timeInvincible;
         }
