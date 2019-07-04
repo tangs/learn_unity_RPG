@@ -47,7 +47,7 @@ public class RubyController : MonoBehaviour
         pos.x += speed * horizontal * Time.deltaTime;
         pos.y += speed * vertical * Time.deltaTime;
         float moveSpeed = Mathf.Sqrt(horizontal * horizontal + vertical * vertical);
-        Debug.Log("move speed:" + moveSpeed + "," + horizontal + "," + vertical);
+        //Debug.Log("move speed:" + moveSpeed + "," + horizontal + "," + vertical);
         if (!Mathf.Approximately(0.0f, horizontal) || !Mathf.Approximately(0.0f, vertical)) {
             lookDirection.Set(horizontal, vertical);
             lookDirection.Normalize();
