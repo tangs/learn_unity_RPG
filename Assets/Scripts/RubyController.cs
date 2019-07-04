@@ -16,6 +16,7 @@ public class RubyController : MonoBehaviour
     // Start is called before the first frame update
 
     Rigidbody2D rigidbody2d;
+    Animator animator;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class RubyController : MonoBehaviour
         // Application.targetFrameRate = 10;
         // dir = transform.position.x < 0 ? 0 : 1;
         rigidbody2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         curHealth = maxHealth;
         isInvincible = false;
         invincibleTimer = 0.0f;
@@ -34,9 +36,17 @@ public class RubyController : MonoBehaviour
         Vector2 pos = rigidbody2d.position;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        if (Input.GetKeyUp(KeyCode.Space)) {
+            animator.SetBool("Hit", true);
+        }
         // Debug.Log(horizontal);
         pos.x += speed * horizontal * Time.deltaTime;
         pos.y += speed * vertical * Time.deltaTime;
+        float moveSpeed = Mathf.Sqrt(horizontal * horizontal + vertical * vertical);
+        Debug.Log("move speed:" + moveSpeed + "," + horizontal + "," + vertical);
+        animator.SetFloat("Look X", horizontal == 0 ? 0 : (horizontal > 0 ? 1 : -1));
+        animator.SetFloat("Look Y", vertical == 0 ? 0 : (vertical > 0 ? 1 : -1));
+        animator.SetFloat("Speed", moveSpeed);
         // transform.position = pos;
         rigidbody2d.MovePosition(pos);
 

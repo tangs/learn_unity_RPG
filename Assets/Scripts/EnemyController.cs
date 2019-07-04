@@ -10,13 +10,18 @@ public class EnemyController : MonoBehaviour
     public bool isHorizontal = true;
     private Vector2 oriPos;
     Rigidbody2D rigidbody2d;
+    Animator animator;
     bool isForth;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         oriPos = rigidbody2d.position;
         isForth = true;
+        // Debug.Log("isHorizontal:" + isHorizontal + "," + (isHorizontal ? 1 : 0));
+        animator.SetFloat("Move X", isHorizontal ? 1 : 0);
+        animator.SetFloat("Move Y", isHorizontal ? 0 : 1);
     }
 
     // Update is called once per frame
@@ -38,6 +43,7 @@ public class EnemyController : MonoBehaviour
             if (pos.x + pos.y >= oriPos.x + oriPos.y + moveLen)
             {
                 isForth = false;
+                animator.SetFloat(isHorizontal ? "Move X" : "Move Y", -1);
             }
         } 
         else 
@@ -45,6 +51,7 @@ public class EnemyController : MonoBehaviour
             if (pos.x + pos.y <= oriPos.x + oriPos.y)
             {
                 isForth = true;
+                animator.SetFloat(isHorizontal ? "Move X" : "Move Y", 1);
             }
         }
     }
