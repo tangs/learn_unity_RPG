@@ -1891,11 +1891,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ruby
       objectReference: {fileID: 0}
-    - target: {fileID: 1645518682631718805, guid: 122240a41309344dbabc90c5191597a3,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 1645518682631718803, guid: 122240a41309344dbabc90c5191597a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1951,22 +1946,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1645518682631718804, guid: 122240a41309344dbabc90c5191597a3,
-        type: 3}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017194769993671462, guid: 122240a41309344dbabc90c5191597a3,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.drawMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1645518682631718802, guid: 122240a41309344dbabc90c5191597a3,
-        type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 1823992816275711703, guid: 46bc31f5e3d7d4fd7a4063299c6d2eb9,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 122240a41309344dbabc90c5191597a3, type: 3}
 --- !u!1001 &6406838691685526126
