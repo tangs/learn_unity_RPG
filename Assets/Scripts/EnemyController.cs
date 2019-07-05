@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D rigidbody2d;
     Animator animator;
     bool isForth;
+    bool broken = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!broken)
+        {
+            return;
+        }
         Vector2 pos = rigidbody2d.position;
         float delta = (isForth ? 1 : -1) * Time.deltaTime * moveSpeed;
         if (isHorizontal) 
@@ -63,5 +68,12 @@ public class EnemyController : MonoBehaviour
         {
             controller.ChangeHealth(-1 * att);
         }
+    }
+
+    public void Fix()
+    {
+        broken = false;
+        rigidbody2d.simulated = false;
+        animator.SetTrigger("Fixed");
     }
 }
