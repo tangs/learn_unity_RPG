@@ -8,11 +8,14 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed = 3f;
     public int att = 1;
     public bool isHorizontal = true;
+    public ParticleSystem smokeEffect;
+
     private Vector2 oriPos;
     Rigidbody2D rigidbody2d;
     Animator animator;
     bool isForth;
     bool broken = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +77,8 @@ public class EnemyController : MonoBehaviour
     {
         broken = false;
         rigidbody2d.simulated = false;
+        smokeEffect.Stop();
+        //Destroy(smokeEffect.gameObject);
         animator.SetTrigger("Fixed");
     }
 }
