@@ -101,7 +101,8 @@ public class RubyController : MonoBehaviour
                Quaternion.identity);
         }
         curHealth = Mathf.Clamp(curHealth + amount, 0, maxHealth);
-        Debug.Log(curHealth + "/" + maxHealth);
+        //Debug.Log(curHealth + "/" + maxHealth);
+        UIHealthBar.instance.SetValue((float)curHealth / maxHealth);
     }
 
     void Launch()
