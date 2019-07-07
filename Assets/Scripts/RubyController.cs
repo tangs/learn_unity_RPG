@@ -8,6 +8,8 @@ public class RubyController : MonoBehaviour
     public int maxHealth = 5;
     public float timeInvincible = 2.0f;
     public Object projectilePrefab;
+    public ParticleSystem bombPrefab;
+    public ParticleSystem CurePrefab;
 
     int curHealth;
     bool isInvincible;
@@ -77,9 +79,18 @@ public class RubyController : MonoBehaviour
             {
                 return;
             }
+
             animator.SetTrigger("Hit");
             isInvincible = true;
             invincibleTimer = timeInvincible;
+
+            Instantiate(bombPrefab, rigidbody2d.position + Vector2.up * 0.5f,
+                Quaternion.identity);
+        }
+        else if (amount > 0)
+        {
+            Instantiate(CurePrefab, rigidbody2d.position + Vector2.up * 0.5f,
+               Quaternion.identity);
         }
         curHealth = Mathf.Clamp(curHealth + amount, 0, maxHealth);
         Debug.Log(curHealth + "/" + maxHealth);
