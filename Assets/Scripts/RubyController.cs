@@ -11,12 +11,16 @@ public class RubyController : MonoBehaviour
     public Object projectilePrefab;
     public ParticleSystem bombPrefab;
     public ParticleSystem CurePrefab;
+    public AudioClip hitClip;
+    public AudioClip throwClip;
 
-    int curHealth;
-    bool isInvincible;
-    float invincibleTimer;
-    Vector2 lookDirection;
+    private int curHealth;
+    private bool isInvincible;
+    private float invincibleTimer;
+    private Vector2 lookDirection;
     private float lastFireTime = -1.0f;
+    private AudioSource audioSource;
+
     public int health { get { return curHealth; }}
     // private int dir;
     // Start is called before the first frame update
@@ -31,6 +35,8 @@ public class RubyController : MonoBehaviour
         // dir = transform.position.x < 0 ? 0 : 1;
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
         curHealth = maxHealth;
         isInvincible = false;
         invincibleTimer = 0.0f;
@@ -92,6 +98,11 @@ public class RubyController : MonoBehaviour
         }
     }
 
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
     public void ChangeHealth(int amount)
     {
         if (amount < 0) 
@@ -102,6 +113,7 @@ public class RubyController : MonoBehaviour
             }
 
             animator.SetTrigger("Hit");
+            PlaySound(hitClip);
             isInvincible = true;
             invincibleTimer = timeInvincible;
 
@@ -130,6 +142,7 @@ public class RubyController : MonoBehaviour
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
         animator.SetTrigger("Launch");
+        PlaySound(throwClip);
         lastFireTime = time;
     }
 }
