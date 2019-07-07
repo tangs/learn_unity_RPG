@@ -167,6 +167,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.tangs.rpg
     Standalone: com.Company.ProductName
+    iPhone: com.tangs.RPG
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -246,7 +247,7 @@ PlayerSettings:
   metalEditorSupport: 1
   metalAPIValidation: 1
   iOSRenderExtraFrameOnPause: 0
-  appleDeveloperTeamID: 
+  appleDeveloperTeamID: U5W65AQK3A
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
   iOSManualSigningProvisioningProfileType: 0
