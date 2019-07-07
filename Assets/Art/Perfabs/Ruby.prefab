@@ -98,7 +98,12 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 2
+  fireWaitTime: 0.5
   projectilePrefab: {fileID: 1823992816275711703, guid: 46bc31f5e3d7d4fd7a4063299c6d2eb9,
+    type: 3}
+  bombPrefab: {fileID: 4096688867481706367, guid: a887899ae8748418ca26740b6acaa79c,
+    type: 3}
+  CurePrefab: {fileID: 6858005703696169858, guid: 2d398eda088344cd196ebfe992d6fa56,
     type: 3}
 --- !u!50 &8336668208331391505
 Rigidbody2D:
